@@ -1,0 +1,60 @@
+@import 'reset.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Jua', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  margin-top: 50px;
+  font-size: 40px;
+}
+
+.main {
+  margin-top: 50px;
+}
+
+button {
+  display: block;
+  width: 100px;
+  height: 50px;
+  background-color: lavender;
+  border-radius: 1rem;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.select-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-presenter {
+  margin-top: 30px;
+}
+
+.sub-title {
+  font-size: 20px;
+}
