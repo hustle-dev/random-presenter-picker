@@ -16,6 +16,10 @@ a {
   box-sizing: border-box;
 }
 
+fieldset {
+  border: 0;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -35,7 +39,6 @@ a {
 }
 
 button {
-  display: block;
   width: 100px;
   height: 50px;
   background-color: lavender;
@@ -57,4 +60,29 @@ button {
 
 .sub-title {
   font-size: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.name-input {
+  width: 150px;
+  height: 50px;
+  text-indent: 10px;
+}
+
+.name-input:focus {
+  outline: none;
+}
+
+.name-list {
+  height: 300px;
+
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border: 1px solid black;
+}
+
+.presenter-title {
+  font-size: 30px;
 }
