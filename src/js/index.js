@@ -60,7 +60,7 @@ $main.addEventListener('click', ({ target }) => {
 
     $main.innerHTML = `
       <section class="select-section">
-          <h2 class="sub-title">지난번 발표자를 선택해주세요</h2>
+          <h2 class="sub-title2">지난번 발표자를 선택해주세요</h2>
           ${nameArr.map((name) => `<button type="button" class="select-presenter">${name}</button>`).join('')}
           <button type="button" class="select-presenter">없음</button>
       </section>
