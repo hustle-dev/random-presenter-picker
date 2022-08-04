@@ -55,6 +55,7 @@ $main.addEventListener('click', ({ target }) => {
 
     if (!nameArr) {
       alert('데이터 설정 버튼을 눌러 발표자 데이터를 설정해주세요');
+      nameArr = [];
       return;
     }
 
