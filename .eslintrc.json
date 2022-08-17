@@ -45,6 +45,7 @@
     "@typescript-eslint/no-empty-function": "off",
     "react/jsx-no-constructed-context-values": "off",
     "no-alert": "off",
-    "jsx-a11y/media-has-caption": "off"
+    "jsx-a11y/media-has-caption": "off",
+    "consistent-return": "off"
   }
 }
