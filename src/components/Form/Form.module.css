@@ -1,0 +1,24 @@
+.subTitle {
+  font-size: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.nameInput {
+  width: 150px;
+  height: 50px;
+  text-indent: 10px;
+}
+
+.nameInput:focus {
+  outline: none;
+}
+
+.nameList {
+  height: 300px;
+
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border: 1px solid black;
+}
