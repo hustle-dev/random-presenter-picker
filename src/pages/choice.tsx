@@ -16,13 +16,15 @@ const Choice: NextPage = () => {
   const { presenters } = usePresenters();
 
   const presenterName = useMemo(() => {
-    const doubleNameArr = (presenters as string[]).concat(presenters as string[]);
+    if (presenters) {
+      const doubleNameArr = (presenters as string[]).concat(presenters as string[]);
 
-    if (selectedPresenter !== '없음') {
-      doubleNameArr.splice(doubleNameArr.indexOf(selectedPresenter), 1);
+      if (selectedPresenter !== '없음') {
+        doubleNameArr.splice(doubleNameArr.indexOf(selectedPresenter), 1);
+      }
+
+      return doubleNameArr[Math.floor(Math.random() * doubleNameArr.length)];
     }
-
-    return doubleNameArr[Math.floor(Math.random() * doubleNameArr.length)];
   }, [selectedPresenter]);
 
   return (
