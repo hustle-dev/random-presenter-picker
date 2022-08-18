@@ -5,13 +5,10 @@ import Head from 'next/head';
 import { useMemo, useState } from 'react';
 import styles from 'styles/Choice.module.css';
 
-export type StatusType = {
-  loading: boolean;
-  complete: boolean;
-};
+export type StatusType = 'idle' | 'loading' | 'complete' | 'error';
 
 const Choice: NextPage = () => {
-  const [status, setStatus] = useState<StatusType>({ loading: false, complete: false });
+  const [status, setStatus] = useState<StatusType>('idle');
   const [selectedPresenter, setSelectedPresenter] = useState<string>('');
   const { presenters } = usePresenters();
 
@@ -28,7 +25,7 @@ const Choice: NextPage = () => {
 
       return { presenter, isContinuously };
     }
-  }, [selectedPresenter]);
+  }, [selectedPresenter, presenters]);
 
   return (
     <>
@@ -36,19 +33,19 @@ const Choice: NextPage = () => {
         <title>랜덤 발표자 - 발표자 뽑기</title>
       </Head>
       <section>
-        {status.loading === false && status.complete === false && (
+        {status === 'idle' && (
           <>
             <h2 className={styles.subTitle}>지난번 발표자를 선택해주세요</h2>
             <PresentersList presenters={presenters} setSelectedPresenter={setSelectedPresenter} setStatus={setStatus} />
           </>
         )}
-        {status.loading === true && status.complete === false && (
+        {status === 'loading' && (
           <>
             <h2 className={styles.subTitle}>랜덤으로 뽑는중입니다... 잠시만 기다려주세요</h2>
             <Loading />
           </>
         )}
-        {status.loading === false && status.complete === true && (
+        {status === 'complete' && (
           <Result name={presenterInfo?.presenter as string} isContinuously={presenterInfo?.isContinuously as boolean} />
         )}
       </section>

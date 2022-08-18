@@ -4,10 +4,10 @@ import { PresentersListProps } from './PresentersList.types';
 export const PresentersList = ({ presenters, setSelectedPresenter, setStatus }: PresentersListProps) => {
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setSelectedPresenter((e.target as HTMLElement).textContent as string);
-    setStatus({ loading: true, complete: false });
+    setStatus('loading');
 
     setTimeout(() => {
-      setStatus({ loading: false, complete: true });
+      setStatus('complete');
     }, 3000);
   };
 
