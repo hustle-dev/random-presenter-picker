@@ -1,0 +1,28 @@
+.result {
+  position: relative;
+}
+
+.presenter {
+  display: none;
+
+  position: absolute;
+  color: white;
+
+  font-size: 30px;
+
+  left: 47%;
+  top: 10%;
+
+  animation: zoomIn 1s;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

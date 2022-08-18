@@ -15,7 +15,7 @@ const Choice: NextPage = () => {
   const [selectedPresenter, setSelectedPresenter] = useState<string>('');
   const { presenters } = usePresenters();
 
-  const presenterName = useMemo(() => {
+  const presenterInfo = useMemo(() => {
     if (presenters) {
       const doubleNameArr = (presenters as string[]).concat(presenters as string[]);
 
@@ -23,7 +23,10 @@ const Choice: NextPage = () => {
         doubleNameArr.splice(doubleNameArr.indexOf(selectedPresenter), 1);
       }
 
-      return doubleNameArr[Math.floor(Math.random() * doubleNameArr.length)];
+      const presenter = doubleNameArr[Math.floor(Math.random() * doubleNameArr.length)];
+      const isContinuously = presenter === selectedPresenter;
+
+      return { presenter, isContinuously };
     }
   }, [selectedPresenter]);
 
@@ -46,10 +49,7 @@ const Choice: NextPage = () => {
           </>
         )}
         {status.loading === false && status.complete === true && (
-          <>
-            <h2 className={styles.subTitle}>발표자: ⭐️ {presenterName} ⭐️</h2>
-            <Result />
-          </>
+          <Result name={presenterInfo?.presenter as string} isContinuously={presenterInfo?.isContinuously as boolean} />
         )}
       </section>
     </>
