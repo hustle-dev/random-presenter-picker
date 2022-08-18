@@ -2,16 +2,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from 'styles/Home.module.css';
 import { usePresenters } from 'contexts';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
   const { presenters, setPresenters } = usePresenters();
   const router = useRouter();
-
-  useEffect(() => {
-    setPresenters(JSON.parse(localStorage.getItem('presenters') as string));
-  }, [setPresenters]);
 
   const handleSetting = () => {
     if (presenters) {
