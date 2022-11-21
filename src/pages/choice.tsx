@@ -2,14 +2,20 @@ import { Loading, PresentersList, Result } from 'components';
 import { usePresenters } from 'contexts';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styles from 'styles/Choice.module.css';
 
-export type StatusType = 'idle' | 'loading' | 'complete' | 'error';
+export type StatusType = 'idle' | 'loading' | 'error';
 
 const Choice: NextPage = () => {
   const [status, setStatus] = useState<StatusType>('idle');
   const [selectedPresenter, setSelectedPresenter] = useState<string>('');
+  const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
+
+  const onLoadedData = useCallback(() => {
+    setIsVideoLoaded(true);
+  }, []);
+
   const { presenters } = usePresenters();
 
   const presenterInfo = useMemo(() => {
@@ -19,6 +25,8 @@ const Choice: NextPage = () => {
       if (selectedPresenter !== '없음') {
         doubleNameArr.splice(doubleNameArr.indexOf(selectedPresenter), 1);
       }
+
+      // console.log(doubleNameArr);
 
       const presenter = doubleNameArr[Math.floor(Math.random() * doubleNameArr.length)];
       const isContinuously = presenter === selectedPresenter;
@@ -39,14 +47,20 @@ const Choice: NextPage = () => {
             <PresentersList presenters={presenters} setSelectedPresenter={setSelectedPresenter} setStatus={setStatus} />
           </>
         )}
+
         {status === 'loading' && (
           <>
-            <h2 className={styles.subTitle}>랜덤으로 뽑는중입니다... 잠시만 기다려주세요</h2>
-            <Loading />
+            <div style={{ display: isVideoLoaded ? 'none' : 'block' }}>
+              <h2 className={styles.subTitle}>랜덤으로 뽑는중입니다... 잠시만 기다려주세요</h2>
+              <Loading />
+            </div>
+            <Result
+              name={presenterInfo?.presenter as string}
+              isContinuously={presenterInfo?.isContinuously as boolean}
+              isVideoLoaded={isVideoLoaded}
+              onLoadedData={onLoadedData}
+            />
           </>
-        )}
-        {status === 'complete' && (
-          <Result name={presenterInfo?.presenter as string} isContinuously={presenterInfo?.isContinuously as boolean} />
         )}
       </section>
     </>

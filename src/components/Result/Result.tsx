@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { ResultProps } from './Result.types';
 import styles from './Result.module.css';
 
-export const Result = ({ name, isContinuously }: ResultProps) => {
+export const Result = ({ name, isContinuously, isVideoLoaded, onLoadedData }: ResultProps) => {
   const h2Ref = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const Result = ({ name, isContinuously }: ResultProps) => {
         (h2Ref.current as HTMLHeadingElement).style.display = 'block';
       }, 2700);
     }
-  }, []);
+  }, [isContinuously]);
 
   return (
     <section className={styles.result}>
@@ -24,9 +24,21 @@ export const Result = ({ name, isContinuously }: ResultProps) => {
         {name}
       </h2>
       {isContinuously ? (
-        <video src="/videos/lineage2.mp4" autoPlay width="500" />
+        <video
+          src="/videos/lineage2.mp4"
+          autoPlay
+          width="500"
+          onLoadedData={onLoadedData}
+          style={{ display: isVideoLoaded ? 'block' : 'none' }}
+        />
       ) : (
-        <video src="/videos/lineage1.mp4" autoPlay width="500" />
+        <video
+          src="/videos/lineage1.mp4"
+          autoPlay
+          width="500"
+          onLoadedData={onLoadedData}
+          style={{ display: isVideoLoaded ? 'block' : 'none' }}
+        />
       )}
     </section>
   );

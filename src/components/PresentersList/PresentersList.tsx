@@ -5,10 +5,6 @@ export const PresentersList = ({ presenters, setSelectedPresenter, setStatus }: 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setSelectedPresenter((e.target as HTMLElement).textContent as string);
     setStatus('loading');
-
-    setTimeout(() => {
-      setStatus('complete');
-    }, 3000);
   };
 
   return (
